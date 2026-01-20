@@ -18,3 +18,7 @@ using time-window analysis.
 - datetime & timedelta usage
 - Security event detection logic
 - Log analysis fundamentals
+
+## Alert Severity (RFC1918 IP ranges)
+- HIGH: Internal (private) IP brute-force attempts
+- MEDIUM: External (public) IP brute-force attempts

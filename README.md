@@ -11,7 +11,8 @@ using time-window analysis.
 - Exports alerts to a persistent log file
 
 ## Example Alert
-2026-01-12 22:47:20 | ALERT | user=john | ip=10.0.0.5 | attempts=3 | window=5m
+2026-01-12 22:47:20 | ALERT | USER: john | IP address: 10.0.0.5 | Attempts: 3 | Window: 5 minutes | IP Type: PRIVATE | Severity: HIGH
+2026-01-12 22:57:23 | ALERT | USER: john | IP address: 12.0.0.6 | Attempts: 3 | Window: 5 minutes | IP Type: PUBLIC | Severity: MEDIUM
 
 ## Skills Demonstrated
 - Python dictionaries & list comprehension

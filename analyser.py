@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from ip_utils import classify_ip, get_severity
 
 users = {}
 users_timestamp = {}
@@ -13,6 +14,8 @@ with open("sample.log", "r") as file:
         user = parts[2].split("=")[1]
         ip = parts[3].split("=")[1]
         status = parts[4].split("=")[1]
+        ip_type = classify_ip(ip)
+        severity = get_severity(ip_type)
 
         # Time extraction
         timestamp_str = parts[0] + " " + parts[1]
@@ -54,12 +57,16 @@ with open("sample.log", "r") as file:
                 print("SUSPICIOUS LOGIN ALERT\n----------------------")
                 print("User:",user)
                 print("IP address:",ip)
-                print("Last login attempt:",users_timestamp[user][ip][-1])
+                print("IP type:",ip_type)
+                print("Severity:",severity)
+                print("Last login attempt:",users_timestamp[user][ip][-1],"\n")
 
                 alert = (f'{users_timestamp[user][ip][-1]} | ALERT | '
                          f'USER: {user} | IP address: {ip} | '
                          f'Attempts: {len(users_timestamp[user][ip])} | '
-                         f'Window: 5 minutes\n')
+                         f'Window: 5 minutes | '
+                         f'IP Type: {ip_type} | '
+                         f'Severity: {severity}\n')
 
                 alert_export.write(alert)
 
